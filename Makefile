@@ -6,22 +6,22 @@ PROGS=Code2
 
 
 Code2: Code2.o cube.a square.a
-	$(CC) Code2.o cube.a square.a -o Code2
+	$(CC) $^ -o $@
 
 Code2.o: Code2.c cube.h square.h
-	$(CC) -c Code2.c
+	$(CC) -c $<
 
 cube.a: cube.o
-	ar cr cube.a cube.o
+	ar cr $@ $^
 
 square.a: square.o
-	ar cr square.a square.o
+	ar cr $@ $^
 	
 cube.o: cube.c
-	$(CC) -fPIC -c cube.c
+	$(CC) -fPIC -c $<
 
 square.o: square.c
-	$(CC) -fPIC -c square.c
+	$(CC) -fPIC -c $<
 
 clean:
 	rm -rf *.o *.a *.so $(PROGS)
