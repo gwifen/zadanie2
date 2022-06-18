@@ -8,6 +8,8 @@ PROGS=Code2
 
 .SUFFIXES: .c .o .a
 
+obj=cube.o square.o
+
 
 %: %.o
 	$(CC) -o $@ $^
@@ -24,11 +26,14 @@ cube.a: cube.o
 square.a: square.o
 	ar cr $@ $^
 
-cube.o: cube.c
-	$(CC) -fPIC -c $<
+$(obj): %.o: %.c
+	$(CC) -fPIC -c $< -o $@
+	
+#cube.o: cube.c
+#	$(CC) -fPIC -c $<
 
-square.o: square.c
-	$(CC) -fPIC -c $<
+#square.o: square.c
+#	$(CC) -fPIC -c $<
 
 clean:
 	rm -rf *.o *.a *.so $(PROGS)
