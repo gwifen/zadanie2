@@ -28,12 +28,6 @@ square.a: square.o
 
 $(obj): %.o: %.c
 	$(CC) -fPIC -c $< -o $@
-	
-#cube.o: cube.c
-#	$(CC) -fPIC -c $<
-
-#square.o: square.c
-#	$(CC) -fPIC -c $<
 
 clean:
 	rm -rf *.o *.a *.so $(PROGS)
